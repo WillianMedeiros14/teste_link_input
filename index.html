@@ -26,33 +26,21 @@
   <input type="text" placeholder="Campo 3" />
   <input type="text" placeholder="Campo 4" />
   <input type="text" placeholder="Campo 5" />
-     <input type="text" placeholder="Campo 4" />
-  <input type="text" placeholder="Campo 5" />
-     <input type="text" placeholder="Campo 4" />
-  <input type="text" placeholder="Campo 5" />
-
-     <input type="text" placeholder="Campo 4" />
-  <input type="text" placeholder="Campo 5" />
-     <input type="text" placeholder="Campo 4" />
-  <input type="text" placeholder="Campo 5" />
   <input type="text" placeholder="Último campo" id="ultimo-input" />
 
   <script>
-    function focusLastInput() {
-      const lastInput = document.getElementById("ultimo-input");
-      if (lastInput) {
-        lastInput.scrollIntoView({ behavior: "smooth", block: "center" });
-        setTimeout(() => {
-          lastInput.focus();
-        }, 300); // pequeno atraso para o teclado aparecer
-      }
-    }
-
     document.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(window.location.search);
-      const scrollEnd = params.get("scrollEnd");
-      if (scrollEnd === "true") {
-        setTimeout(focusLastInput, 500); // espera meio segundo para garantir que o WebView terminou de renderizar
+      const scrollOnLast = params.get("scrollOnLast"); // Ex.: ?scrollOnLast=true
+
+      if (scrollOnLast === "true") {
+        const lastInput = document.getElementById("ultimo-input");
+
+        lastInput.addEventListener("focus", () => {
+          setTimeout(() => {
+            lastInput.scrollIntoView({ behavior: "smooth", block: "center" });
+          }, 300);
+        });
       }
     });
   </script>
