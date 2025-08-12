@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teste de Scroll no Último Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        input {
+            display: block;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Formulário de Teste</h2>
+    <input type="text" placeholder="Primeiro campo">
+    <input type="text" placeholder="Segundo campo">
+    <input type="text" placeholder="Primeiro campo">
+    <input type="text" placeholder="Segundo campo">
+    <input type="text" placeholder="Primeiro campo">
+    <input type="text" placeholder="Segundo campo">
+    <input type="text" placeholder="Primeiro campo">
+    <input type="text" placeholder="Segundo campo">
+    <input type="text" placeholder="Primeiro campo">
+    <input type="text" placeholder="Segundo campo">
+    <input type="text" placeholder="Primeiro campo">
+    <input type="text" placeholder="Segundo campo">
+
+    <input id="lastInput" type="text" placeholder="Último campo">
+
+    <script>
+        // Valor padrão (pode ser alterado pela WebView)
+        window.shouldScrollToEnd = false;
+
+        document.getElementById("lastInput").addEventListener("focus", function () {
+            if (window.shouldScrollToEnd) {
+                setTimeout(() => {
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }, 300); // atraso para garantir que o teclado já abriu
+            }
+        });
+    </script>
+</body>
+
+</html>
